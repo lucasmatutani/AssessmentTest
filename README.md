@@ -6,7 +6,7 @@
         PHPUnit is used for testing.
     </p>
     <h2>Detailed Component Breakdown</h2>
-    <h3>1. Domain Layer</h3>
+## 1. Domain Layer
     <ul>
         <li><strong>Book.php</strong>
             <ul>
@@ -31,7 +31,6 @@
             </ul>
         </li>
     </ul>
-    
     <h3>2. Infrastructure Layer</h3>
     <ul>
         <li><strong>BookRepository.php</strong>
@@ -45,7 +44,6 @@
             </ul>
         </li>
     </ul>
-    
     <h3>3. Controllers</h3>
     <ul>
         <li><strong>BookController.php</strong>
@@ -59,7 +57,6 @@
             </ul>
         </li>
     </ul>
-    
     <h3>4. Migrations</h3>
     <ul>
         <li><strong>create_books_table.php</strong>
@@ -78,7 +75,6 @@
             </ul>
         </li>
     </ul>
-    
     <h3>5. Routes</h3>
     <ul>
         <li><strong>api.php</strong>
@@ -88,7 +84,6 @@
             </ul>
         </li>
     </ul>
-    
     <h3>6. Tests</h3>
     <ul>
         <li><strong>BookControllerTest.php</strong>
