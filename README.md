@@ -6,7 +6,7 @@
         PHPUnit is used for testing.
     </p>
     <h2>Detailed Component Breakdown</h2>
-## 1. Domain Layer
+    <h3>1. Domain Layer</h3>
     <ul>
         <li><strong>Book.php</strong>
             <ul>
