@@ -3,47 +3,62 @@
 namespace App\Http\Controllers\Stores;
 
 use App\Http\Controllers\Controller;
+use App\Domain\Stores\StoreRepositoryInterface;
 use Illuminate\Http\Request;
 
 class StoreController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    protected $storeRepo;
+
+    public function __construct(StoreRepositoryInterface $storeRepo)
+    {
+        $this->storeRepo = $storeRepo;
+        $this->middleware('auth:sanctum')->except(['index', 'show']);
+    }
+
     public function index()
     {
-        //
+        return response()->json($this->storeRepo->all());
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'address' => 'required|string',
+            'active' => 'required|boolean'
+        ]);
+
+        $store = $this->storeRepo->create($validatedData);
+        return response()->json($store, 201);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function show($id)
     {
-        //
+        $store = $this->storeRepo->find($id);
+        if (!$store) {
+            return response()->json(['message' => 'Store not found'], 404);
+        }
+        return response()->json($store);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => 'sometimes|required|string|max:255',
+            'address' => 'sometimes|required|string',
+            'active' => 'sometimes|required|boolean'
+        ]);
+
+        $store = $this->storeRepo->update($id, $validatedData);
+        return response()->json($store);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        if ($this->storeRepo->delete($id)) {
+            return response()->json(['message' => 'Store deleted successfully'], 204);
+        }
+        return response()->json(['message' => 'Store not found'], 404);
     }
 }
