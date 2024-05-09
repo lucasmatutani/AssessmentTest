@@ -61,4 +61,36 @@ class BookController extends Controller
         }
         return response()->json(['message' => 'Book not found'], 404);
     }
+
+    public function attachStores(Request $request, $bookId)
+    {
+        $book = $this->bookRepo->find($bookId);
+        if (!$book) {
+            return response()->json(['message' => 'Book not found'], 404);
+        }
+
+        $book->stores()->attach($request->store_ids);
+        return response()->json(['message' => 'Stores attached successfully']);
+    }
+
+    public function detachStores(Request $request, $bookId)
+    {
+        $book = $this->bookRepo->find($bookId);
+        if (!$book) {
+            return response()->json(['message' => 'Book not found'], 404);
+        }
+
+        $book->stores()->detach($request->store_ids);
+        return response()->json(['message' => 'Stores detached successfully']);
+    }
+
+    public function getStores($bookId)
+    {
+        $book = $this->bookRepo->find($bookId);
+        if (!$book) {
+            return response()->json(['message' => 'Book not found'], 404);
+        }
+
+        return response()->json($book->stores);
+    }
 }

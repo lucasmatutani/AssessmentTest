@@ -61,4 +61,36 @@ class StoreController extends Controller
         }
         return response()->json(['message' => 'Store not found'], 404);
     }
+
+    public function attachBooks(Request $request, $storeId)
+    {
+        $store = $this->storeRepo->find($storeId);
+        if (!$store) {
+            return response()->json(['message' => 'Store not found'], 404);
+        }
+
+        $store->books()->attach($request->book_ids);
+        return response()->json(['message' => 'Books attached successfully']);
+    }
+
+    public function detachBooks(Request $request, $storeId)
+    {
+        $store = $this->storeRepo->find($storeId);
+        if (!$store) {
+            return response()->json(['message' => 'Store not found'], 404);
+        }
+
+        $store->books()->detach($request->book_ids);
+        return response()->json(['message' => 'Books detached successfully']);
+    }
+
+    public function getBooks($storeId)
+    {
+        $store = $this->storeRepo->find($storeId);
+        if (!$store) {
+            return response()->json(['message' => 'Store not found'], 404);
+        }
+
+        return response()->json($store->books);
+    }
 }
