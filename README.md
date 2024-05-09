@@ -5,7 +5,6 @@
         It implements CRUD functionalities for Stores and Books, along with user authentication for login and logout. 
         PHPUnit is used for testing.
     </p>
-    
     <h2>Detailed Component Breakdown</h2>
     <h3>1. Domain Layer</h3>
     <ul>
