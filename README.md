@@ -1,3 +1,114 @@
+   <h1>Project Documentation for Laravel Backend CRUD for Stores and Books</h1>
+    <h2>Project Structure</h2>
+    <p>
+        The project utilizes the Laravel framework, adhering to the Domain-Driven Design (DDD) methodology. 
+        It implements CRUD functionalities for Stores and Books, along with user authentication for login and logout. 
+        PHPUnit is used for testing.
+    </p>
+    
+    <h2>Detailed Component Breakdown</h2>
+    <h3>1. Domain Layer</h3>
+    <ul>
+        <li><strong>Book.php</strong>
+            <ul>
+                <li>The <code>Book</code> model defines attributes like <code>name</code>, <code>isbn</code>, and <code>value</code>.</li>
+                <li>It establishes a many-to-many relationship with <code>Store</code> through the <code>book_store</code> table.</li>
+            </ul>
+        </li>
+        <li><strong>BookRepositoryInterface.php</strong>
+            <ul>
+                <li>This interface defines methods such as <code>all</code>, <code>find</code>, <code>create</code>, <code>update</code>, and <code>delete</code>.</li>
+            </ul>
+        </li>
+        <li><strong>Store.php</strong>
+            <ul>
+                <li>The <code>Store</code> model defines attributes like <code>name</code>, <code>address</code>, and <code>active</code>.</li>
+                <li>It establishes a many-to-many relationship with <code>Book</code> through the <code>book_store</code> table.</li>
+            </ul>
+        </li>
+        <li><strong>StoreRepositoryInterface.php</strong>
+            <ul>
+                <li>This interface defines methods such as <code>all</code>, <code>find</code>, <code>create</code>, <code>update</code>, and <code>delete</code>.</li>
+            </ul>
+        </li>
+    </ul>
+    
+    <h3>2. Infrastructure Layer</h3>
+    <ul>
+        <li><strong>BookRepository.php</strong>
+            <ul>
+                <li>Implements the <code>BookRepositoryInterface</code>.</li>
+            </ul>
+        </li>
+        <li><strong>StoreRepository.php</strong>
+            <ul>
+                <li>Implements the <code>StoreRepositoryInterface</code>.</li>
+            </ul>
+        </li>
+    </ul>
+    
+    <h3>3. Controllers</h3>
+    <ul>
+        <li><strong>BookController.php</strong>
+            <ul>
+                <li>Implements CRUD methods and associations with <code>Store</code>.</li>
+            </ul>
+        </li>
+        <li><strong>StoreController.php</strong>
+            <ul>
+                <li>Implements CRUD methods and associations with <code>Book</code>.</li>
+            </ul>
+        </li>
+    </ul>
+    
+    <h3>4. Migrations</h3>
+    <ul>
+        <li><strong>create_books_table.php</strong>
+            <ul>
+                <li>Creates the <code>books</code> table.</li>
+            </ul>
+        </li>
+        <li><strong>create_stores_table.php</strong>
+            <ul>
+                <li>Creates the <code>stores</code> table.</li>
+            </ul>
+        </li>
+        <li><strong>create_book_store_table.php</strong>
+            <ul>
+                <li>Creates the <code>book_store</code> pivot table for the many-to-many relationship.</li>
+            </ul>
+        </li>
+    </ul>
+    
+    <h3>5. Routes</h3>
+    <ul>
+        <li><strong>api.php</strong>
+            <ul>
+                <li>Defines API routes, including authentication and protected routes.</li>
+                <li>Includes routes for <code>BookController</code> and <code>StoreController</code> to manage books, stores, and their relationships.</li>
+            </ul>
+        </li>
+    </ul>
+    
+    <h3>6. Tests</h3>
+    <ul>
+        <li><strong>BookControllerTest.php</strong>
+            <ul>
+                <li>Unit tests for the <code>BookController</code>.</li>
+            </ul>
+        </li>
+        <li><strong>StoreBookRelationshipTest.php</strong>
+            <ul>
+                <li>Tests the relationship between <code>Store</code> and <code>Book</code>.</li>
+            </ul>
+        </li>
+        <li><strong>StoreControllerTest.php</strong>
+            <ul>
+                <li>Unit tests for the <code>StoreController</code>.</li>
+            </ul>
+        </li>
+    </ul>
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
