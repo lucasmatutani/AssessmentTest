@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Domain\Books;
+namespace App\Domain\Books;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Book extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['name', 'isbn', 'value'];
 }
